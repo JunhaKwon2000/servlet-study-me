@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="com.gn.dto.Account"%>        
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,10 +38,31 @@
 	<%-- 물론 쿠키도 무조건 화면에 보이는데만 쓰는것이 아닌 일반 적인 자바 코드에서(특히 서블릿에서 어떤 동작 처리할 때) 사용 가능하다는 것을 알고 있어야함! --%>
 	
 	<h1>세션!</h1>
+	<% 
+		Account account = null;
+		if (session != null) {
+			if (session.getAttribute("account") != null) {
+				account = (Account)session.getAttribute("account"); 				
+			}
+		}
+	%>
+	<% try { String check = account.getId(); %>
+		<p><%= account.getName() %>님 환영합니다!<p>
+		<a href="/logout">로그아웃</a>			
+	<% } catch(Exception e){%>
+		<form action="/login" method="post">
+			<label>아이디 : </label>
+			<input type="text" name="id"><br>
+			<label>비밀번호 : </label>
+			<input type="password" name="pw">
+			<input type="submit" value="로그인">
+		</form>
+	<% } %>
 	<ol>
 		<li><a href="/createSession">세션 생성</a></li>
 		<li><a href="/updateSession">세션 수정</a></li>
 		<li><a href="/removeSession">세션 삭제</a></li>
+		<li><a href="/productList">장바구니에 담기 과제로 이동하기</a></li>
 	</ol>
 	
 	<%
