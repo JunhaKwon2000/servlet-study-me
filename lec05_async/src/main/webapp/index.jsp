@@ -67,8 +67,53 @@
 				
 			})
 			
+		})
+	</script>
+	
+	<h2>[과제]총점과 평균</h2>
+	<h3>성적 계산기</h3>
+	
+	<label for="kor">국어 : </label>
+	<input type="number" id="kor"><br>
+	
+	<label for="eng">영어 : </label>
+	<input type="number" id="eng"><br>
+	
+	<label for="math">수학 : </label>
+	<input type="number" id="math"><br>
+	
+	<button id="btnPost">계산</button>
+	
+	<div id="resultArea"></div>
+	
+	
+	<script>
+		$(document).ready(() => {
 			
-			
+			$('#btnPost').on('click', () => {
+				const korScore = $('#kor').val();
+				const engScore = $('#eng').val();
+				const mathScore = $('#math').val();
+				
+				$.ajax({
+					url: '/postAvgScore',
+					type: 'post',
+					data: {
+						korScore: korScore,
+						engScore: engScore,
+						mathScore: mathScore
+					},
+					success: (data) => {
+						console.log(data);
+						$('#resultArea').html($('<h4>').text(data));
+					},
+					error: () => {
+						alert('요청 실패');
+					}
+					
+				})
+				
+			})
 			
 		})
 	</script>
