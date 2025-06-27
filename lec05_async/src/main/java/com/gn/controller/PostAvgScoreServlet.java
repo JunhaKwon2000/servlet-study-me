@@ -34,12 +34,13 @@ public class PostAvgScoreServlet extends HttpServlet {
 		int mathScore = Integer.parseInt(request.getParameter("mathScore"));
 		int sum = korScore + engScore + mathScore;
 		Double average = sum / 3.0;
+		Double roundedAverage = Math.round(average * 100) / 100.0;
 		String result = "";
 		
 		if (korScore >= 40 && engScore >= 40 && mathScore >= 40) {
-			if (average >= 60.0) result = "[합격]축하드립니다, 합격입니다. 총점: " + sum + "점, 평균: " + average + "점";
-			else result = "[불합격]평균이 60점 이하입니다. 총점: " + sum + "점, 평균: " + average + "점";
-		} else result = "[불합격]과목들 중 점수가 40점 이하인 과목이 존재합니다. 총점: " + sum + "점, 평균: " + average + "점";
+			if (average >= 60.0) result = "[합격]축하드립니다, 합격입니다. 총점: " + sum + "점, 평균: " + roundedAverage + "점";
+			else result = "[불합격]평균이 60점 이하입니다. 총점: " + sum + "점, 평균: " + roundedAverage + "점";
+		} else result = "[불합격]과목들 중 점수가 40점 이하인 과목이 존재합니다. 총점: " + sum + "점, 평균: " + roundedAverage + "점";
 		
 		response.setContentType("text/plain; charset=UTF-8");
 		PrintWriter out = response.getWriter();

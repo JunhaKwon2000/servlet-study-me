@@ -117,5 +117,159 @@
 			
 		})
 	</script>
+	
+	
+	<h2>1.3. JSON + AJAX</h2>
+	<input type="text" id="searchName">
+	<button type="button" id="json_get_btn">조회</button>
+	<div id="json_get_div"></div>
+	
+	<script>
+		
+	$(document).ready(() => {
+		
+		$('#json_get_btn').on('click', () => {
+			// 1. 사용자 이름 정보 가져오기
+			// 2. GET 방식(비동기) 요청
+			// 3. Servlet에 Account List 목록에서 해당 이름이 존재하는지 확인하고 이름이 포함된 사람 목록을 전달받음
+			// 4. 화면에 목록 형태로 출력함
+			
+			const keyword = $('#searchName').val();
+			
+			$.ajax({
+				url: '/searchAccount?name=' + keyword,
+				type: 'get',
+				dataType: 'json',
+				success: (data) => {
+					
+					console.log(data.data);
+					console.log(data.data.length);
+					
+					if (data.data.length != 0) {
+						
+						for (const item of data.data) {
+							const no = item.no;
+							const name = item.name;
+							$('#json_get_div').append('<p>번호: ' + no + ', 이름: ' + name);
+						}
+						
+					}
+					
+				},
+				error: () => {
+						
+				}
+			});
+		});
+		
+		
+	});
+	
+	</script>
+	
+	<h2>도서 검색</h2>
+	<label for="searchBook">도서명: </label>
+	<input type="text" id="searchBook">
+	<button id="book_get_btn">조회</button>
+	<div id="book_get_div"></div>
+	
+	<script>
+	
+		$(document).ready(() => {
+			
+			
+			$('#book_get_btn').on('click', () => {
+				
+				const keyword = $('#searchBook').val();
+				console.log(keyword);
+				
+				$.ajax({
+					url: '/searchBook?keyword=' + keyword,
+					type: 'get',
+					dataType: 'json',
+					success: (data) => {
+						console.log(data.result);
+						console.log(data.result.length)
+	
+						if (data.result.length != 0) {
+							console.log('yes');
+						}
+						
+						if (data.result.length != 0) {
+							for (const item of data.result) {
+								const no = item.no;
+								const name = item.name;
+								const writer = item.writer;
+								$('#book_get_div').html($('<p>').text('번호: ' + no + ', 이름: ' + name));
+							}
+						} else {
+							$('#book_get_div').html($('<p>').text());
+							window.alert('검색 결과가 없습니다.');
+						}
+					}
+					
+					
+					
+				})
+							
+				
+			})
+			
+			
+			
+		})
+	
+	
+	</script>
+	
+	<h2>카테고리별 상품 조회</h2>
+	<select id="categorySelect">
+		<option value="1">전자제품</option>
+		<option value="2">생활용품</option>
+		<option value="3">패션</option>
+	</select>
+	<button type="button" id="searchBtn">조회</button>
+	<div id="productListArea"></div>
+	
+	
+	<script>
+	
+	$(document).ready(() => {
+		$('#categorySelect').change(() => {
+			
+			const categoryCode = $("#categorySelect option:selected").val();
+			console.log(categoryCode);
+			
+			$.ajax({
+				url: '/searchProduct',
+				type: 'post',
+				dataType: 'json',
+				data: {
+					code : categoryCode
+				},
+				success: (data) => {
+					console.log(data);
+					$('#productListArea').empty();
+					if (data.result.length != 0) {
+						for (const item of data.result) {
+							const name = item.name;
+							const price = item.price;
+							$('#productListArea').append('<p>이름: ' + name + ', 가격: ' + price);
+						}
+					} else {						
+						$('#productListArea').html("해당 카테고리의 상품이 없습니다.");
+					}
+				}
+				
+				
+			})
+			
+			
+		})
+		
+		
+	})
+	
+	</script>
 </body>
 </html>
