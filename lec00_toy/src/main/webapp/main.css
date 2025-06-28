@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+h1 {
+	width: 300px;
+	margin: 30px auto 30px;
+}
+
+
+#calendar {
+	width: 80%;
+	margin: 0 auto;
+}
