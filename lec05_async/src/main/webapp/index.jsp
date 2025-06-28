@@ -271,5 +271,8 @@
 	})
 	
 	</script>
+	
+	<h2>[과제] 방명록 비동기 통신</h2>
+	<a href="/guestBook">방명록 과제로 이동하기</a>
 </body>
 </html>
