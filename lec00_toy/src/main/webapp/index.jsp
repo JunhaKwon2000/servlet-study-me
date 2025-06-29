@@ -73,5 +73,8 @@
 	<div id="cookie_practice2">
 		<a href="/cookie_page">쿠키 페이지로 이동하기</a>
 	</div>
+	
+	<h1>비동기 통신(ajax + json) 방명록 연습</h1>
+	<a href="/guestBook">방명록으로 이동하기</a>
 </body>
 </html>
