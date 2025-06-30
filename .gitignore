@@ -3,3 +3,4 @@
 .vscode
 .DS_Store
 Servers
+driver.properties
