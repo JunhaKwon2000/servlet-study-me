@@ -48,4 +48,11 @@ public class StudentService {
 		
 		return dao.update(student);
 	}
+	
+	public int deleteStudent(int studentNo) {
+		Student param = new Student();
+		param.setStudentNo(studentNo);
+		
+		return dao.delete(param);
+	}
 }

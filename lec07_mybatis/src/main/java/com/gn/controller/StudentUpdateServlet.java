@@ -57,6 +57,7 @@ public class StudentUpdateServlet extends HttpServlet {
 		// 이 url은 한번 gpt에게 물어봐서 확실히 짚고 넘어가자!
 		
 		int result = service.updateStudent(studentNo, studentName, studentAge);
+		System.out.println(result);
 		
 		if (result > 0) response.sendRedirect("/student/list");
 		else response.sendRedirect("/student/update?no=" + studentNo);

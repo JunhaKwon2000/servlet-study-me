@@ -47,5 +47,12 @@ public class StudentDao {
 		session.close();
 		return result;
 	}
+	
+	public int delete(Student param) {
+		SqlSession session = SessionTemplate.getSqlSession(true);
+		int result = session.delete("com.gn.mapper.StudentMapper.deleteStudent", param);
+		session.close();
+		return result;
+	}
 
 }

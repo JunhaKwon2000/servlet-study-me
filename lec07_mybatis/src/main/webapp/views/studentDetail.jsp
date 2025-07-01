@@ -13,5 +13,6 @@
 	<p>나이: ${ student.studentAge }</p>
 	
 	<a href="<c:url value='/student/update?no=${ student.studentNo }' />">수정하기</a>
+	<a href="<c:url value='/student/delete?no=${ student.studentNo }' />">삭제하기</a>
 </body>
 </html>
