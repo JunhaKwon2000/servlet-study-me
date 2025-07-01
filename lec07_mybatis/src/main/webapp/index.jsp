@@ -19,5 +19,10 @@
 	<!-- 3. Service에 정보 전달 -->
 	<!-- 4. DAO에 데이터베이스 연결 요청 -->
 	<!-- 5. DAO에 Mapper에 있는 쿼리 실행 -->
+	
+	<form action="<c:url value='/student/search' />" method="get">
+		<input type="text" name="student_name">
+		<button>이름 기준 검색</button>
+	</form>
 </body>
 </html>
