@@ -24,5 +24,42 @@
 		<input type="text" name="student_name">
 		<button>이름 기준 검색</button>
 	</form>
+	
+	<br>
+	
+	<!-- 상품명과 카테고리를 기준 상품 검색 -->
+	<form action="<c:url value='/product/search' />" method="get">
+		<div>
+			<label id="searchProduct">상품명</label>
+		</div>
+		<input type="text" name="productName" id="searchProduct">
+		
+		<div>
+			<label id="searchCategory">카테고리</label>
+		</div>
+		<select name="productCategory" id="searchCategory">
+			<option value="0">==== 선택 ====</option>
+			<option value="1">전자제품</option>
+			<option value="2">의류</option>
+			<option value="3">식품</option>
+		</select>
+		
+		<div>
+			<div>
+				<label id="sortPrice">정렬 기준</label>
+			</div>
+			<select name="sort" id="sortPrice">
+				<option value="0">==== 선택 ====</option>
+				<option value="1">가격이 낮은 순</option>
+				<option value="2">가격이 높은 순</option>
+			</select>
+		</div>
+		
+		<div>
+			<button>검색</button>
+		</div>
+	</form>
+	
+	
 </body>
 </html>
