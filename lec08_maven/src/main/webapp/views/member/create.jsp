@@ -54,6 +54,9 @@
 						console.log(data);
 						console.log(data.res_msg);
 						window.alert(data.res_msg);
+						if (data.res_code == 200) {
+						// 로그인 화면 전환 로직 넣기
+						}
 					},
 					error: () => {
 						

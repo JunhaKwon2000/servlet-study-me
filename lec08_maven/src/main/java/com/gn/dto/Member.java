@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Member {
+	private int memberNo;
 	private String memberId;
 	private String memberPw;
 }
