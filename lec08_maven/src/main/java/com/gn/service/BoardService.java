@@ -13,8 +13,24 @@ public class BoardService {
 	
 	private BoardDao boardDao = new BoardDao();
 	
-	public List<Board> selectBoardList(){
-		return boardDao.selectBoardList();
+	public List<Board> selectBoardList(Board param){
+		return boardDao.selectBoardList(param);
+	}
+	
+	public int selectBoardCount(Board param) {
+		return boardDao.selectBoardCount(param);
+	}
+	
+	public Board selectBoardOne(int boardNo) {
+		return boardDao.selectBoardOne(boardNo);
+	}
+	
+	public Attach selectAttachByBoardNo(int boardNo) {
+		return boardDao.selectAttachByBoardNo(boardNo);
+	}
+	
+	public Attach selectAttachByAttachNo(int attachNo) {
+		return boardDao.selectAttachByAttachNo(attachNo);
 	}
 	
 	// 게시글과 파일 트랜잭션을 처리하는 메서드, 게시글 + 파일을 처리해야되기 때문에 insert 가 두개여서 트랜잭션으로 묶어야함
@@ -53,5 +69,6 @@ public class BoardService {
 		
 		return result;
 	}
+
 
 }

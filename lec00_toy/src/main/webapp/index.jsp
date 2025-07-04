@@ -76,5 +76,6 @@
 	
 	<h1>비동기 통신(ajax + json) 방명록 연습</h1>
 	<a href="/guestBook">방명록으로 이동하기</a>
+	<a href="/views/sidebar.jsp">사이드바</a>
 </body>
 </html>

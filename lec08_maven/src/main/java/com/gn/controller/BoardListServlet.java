@@ -48,20 +48,27 @@ public class BoardListServlet extends HttpServlet {
 			}
 		}
 		
-		// 게시글 목록 조회
-		List<Board> boardList = service.selectBoardList();
-		List<Member> memberList = memberService.selectAll();
-		
-		
-		for (Board b : boardList) {
-			for (Member m : memberList) {
-				if (b.getBoardWriter() == m.getMemberNo()) {
-					b.setMemberTrueId(m.getMemberId());
-				}
-			}
+		Board param = new Board();
+		// 현재 페이지 정보 셋팅
+		int nowPage = 1;
+		String nowPageStr = request.getParameter("nowPage");
+		if (nowPageStr != null) {
+			nowPage = Integer.parseInt(nowPageStr);
 		}
+		param.setNowPage(nowPage);
 		
+		// 검색어 셋팅
+		String keyword = request.getParameter("keyword");
+		param.setKeyword(keyword);
 		
+		// 전체 게시글 개수 조회
+		int totalData = service.selectBoardCount(param);
+		param.setTotalData(totalData); // 여기서 시작과 끝점을 정해주고
+		
+		// 게시글 목록 조회
+		List<Board> boardList = service.selectBoardList(param); // 여기서 그 목록의 페이지들을  
+		
+		request.setAttribute("paging", param);
 		request.setAttribute("boardList", boardList);
 		request.getRequestDispatcher("/views/board/list.jsp").forward(request, response);
 	}
